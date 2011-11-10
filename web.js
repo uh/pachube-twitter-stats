@@ -50,6 +50,7 @@ app.get('/', function(request, response) {
       	pachube.description = "Twitter stats for " + name + " (@" + screen_name + "): " + description;
       	pachube.location = {};
       	pachube.location.name = location;
+      	pachube.version = "1.0.0";
       	pachube.datastreams = [];
       	
       	pachube.datastreams[0] = {};
