@@ -7,7 +7,12 @@ var app = express.createServer(express.logger());
 
 app.get('/', function(request, response) {
 
-	  getPage("https://api.twitter.com/1/users/lookup.json?screen_name=uah", function(body) {
+	  
+	  var url_parts = url.parse(request.url,true);
+      var username = url_parts.query.name;
+
+	  getPage("https://api.twitter.com/1/users/lookup.json?screen_name="+username, function(body) {
+	  
 	  
       response.writeHead(200, {"Content-Type": "text/plain"});
       var name = "";
