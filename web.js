@@ -46,10 +46,11 @@ app.get('/', function(request, response) {
 	  }
       
       var message = "";
+      var pachube = {};
       
       if (active){
       
-      	pachube = {};
+      	
       	
       	pachube.title = "Twitter stats for " + name;
       	pachube.description = "Twitter stats for " + name + " (@" + screen_name + "): " + description;
