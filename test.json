@@ -1,0 +1,14 @@
+{
+  "title":"Pachube Office environment",
+  "version":"1.0.0",
+  "datastreams":[
+    {
+      "current_value":"123",
+      "id":"0"
+    },
+    {
+      "current_value":"987",
+      "id":"1"
+    }
+  ]
+}

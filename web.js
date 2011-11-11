@@ -8,7 +8,6 @@ var app = express.createServer(express.logger());
 app.get('/:username', function(request, response) {
 
 	  
-	  //var url_parts = url.parse(request.url,true);
       var username =  request.params.username;
 
 	  getPage("https://api.twitter.com/1/users/lookup.json?screen_name="+username, function(body) {
