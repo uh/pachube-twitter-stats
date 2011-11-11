@@ -45,18 +45,25 @@ app.get('/:username', function(request, response) {
       			statuses_count = tweets.statuses_count;
       			friends_count = tweets.friends_count;
       			
-      			if (typeof (tweets.status) != "undefined") {
+      			if ((typeof (tweets.status) != "undefined") && (tweets.status != null)) {
 
-      				if (typeof (tweets.status.geo) != "undefined") {
+      				if ((typeof (tweets.status.geo) != "undefined") && (tweets.status.geo != null)) {
       			
-						lat = tweets.status.geo.coordinates[0];
-						lon = tweets.status.geo.coordinates[1];
-					
-						console.log ("lat " + lat);
-						console.log ("lon " + lon);
+      					
+      					if ((typeof (tweets.status.geo.coordinates) != "undefined") && (tweets.status.geo.coordinates != null)) {
+      			
+	      					if ((typeof (tweets.status.geo.coordinates[0]) != "undefined") && (tweets.status.geo.coordinates[0] != null) && (typeof (tweets.status.geo.coordinates[1]) != "undefined") && (tweets.status.geo.coordinates[1] != null)) {
+      			
+								lat = tweets.status.geo.coordinates[0];
+								lon = tweets.status.geo.coordinates[1];
+							
+								console.log ("lat " + lat);
+								console.log ("lon " + lon);
+								
+								geolocated = true;
 						
-						geolocated = true;
-						
+							}
+						}
       				}
       			}
       			
