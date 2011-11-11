@@ -48,11 +48,15 @@ app.get('/:username', function(request, response) {
       var pachube = {};
       
       if (active){
-      
+      	
+      	console.log("0" + JSON.stringify(pachube));
       	pachube.title = "Twitter stats for " + name;
       	pachube.description = "Twitter stats for " + name + " (@" + screen_name + "): " + description;
+      	console.log("1" + JSON.stringify(pachube));
       	pachube.location = { name: location, domain: "virtual"};
+       	console.log("2" + JSON.stringify(pachube));
        	pachube.version = "1.0.0";
+      	console.log("3" + JSON.stringify(pachube));
       	pachube.datastreams = [];
       	pachube.tags = [];
       	pachube.tags[0] = "twitter";
@@ -96,6 +100,7 @@ app.get('/:username', function(request, response) {
       	      
       }
       
+      console.log(JSON.stringify(pachube));
       response.write(JSON.stringify(pachube));
       response.end("");
       
