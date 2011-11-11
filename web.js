@@ -97,7 +97,14 @@ app.get('/:username', function(request, response) {
       	pachube.datastreams[4].min_value = "0";
       	pachube.datastreams[4].unit = {};
       	pachube.datastreams[4].unit.label = "favourites";
-      	      
+      	
+      	var followers_friends_ratio = followers_count/friends_count;
+      	
+      	pachube.datastreams[5] = {};
+      	pachube.datastreams[5].id = "followers_to_friends_ratio";      	
+      	pachube.datastreams[5].current_value = String(followers_friends_ratio);
+      	pachube.datastreams[5].min_value = "0";
+       	      
       }
       
       console.log(JSON.stringify(pachube));
