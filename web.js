@@ -13,7 +13,7 @@ app.get('/:username', function(request, response) {
 	  getPage("https://api.twitter.com/1/users/lookup.json?screen_name="+username, function(body) {
 	  
 	  
-      response.writeHead(200, {"Content-Type": "text/plain"});
+      response.writeHead(200, {"Content-Type": "application/json"});
       var name = "";
       var username = "";
       var description = "";
