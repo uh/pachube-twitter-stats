@@ -116,9 +116,9 @@ app.listen(port, function() {
 
 
 
-function getPage (url, callback) {
-  request({uri: someUri}, function (error, response, body) {
-      console.log("Fetched " +url+ " successfully.");
+function getPage (someurl, callback) {
+  request({uri: someurl}, function (error, response, body) {
+      console.log("Fetched " +someurl+ " successfully.");
       callback(body);
     });
 }
