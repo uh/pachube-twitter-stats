@@ -27,6 +27,9 @@ app.get('/:username', function(request, response) {
       var tweets_json = JSON.parse(body);
 
 	  var active = false;
+	  var geolocated = false;
+	  var lat = null;
+	  var lon = null; 
 	  
       var tweets = "";
 	  if(tweets_json.length > 0) {
@@ -41,6 +44,25 @@ app.get('/:username', function(request, response) {
       			listed_count = tweets.listed_count;
       			statuses_count = tweets.statuses_count;
       			friends_count = tweets.friends_count;
+      			
+      			if (typeof (tweets.status) != "undefined") {
+
+      				if (typeof (tweets.status.geo) != "undefined") {
+      			
+						lat = tweets.status.geo.coordinates[0];
+						lon = tweets.status.geo.coordinates[1];
+					
+						console.log ("lat " + lat);
+						console.log ("lon " + lon);
+						
+						geolocated = true;
+						
+      				}
+      			}
+      			
+      			
+      			
+      			
       			active = true;
 	  }
       
@@ -104,6 +126,28 @@ app.get('/:username', function(request, response) {
       	pachube.datastreams[5].id = "followers_to_friends_ratio";      	
       	pachube.datastreams[5].current_value = String(followers_friends_ratio);
       	pachube.datastreams[5].min_value = "0";
+      	
+      	if (geolocated){
+      	
+      		pachube.location.lat = lat;
+      		pachube.location.lon = lon;
+      		
+			pachube.datastreams[6] = {};
+			pachube.datastreams[6].id = "latitude";      	
+			pachube.datastreams[6].current_value = String(lat);
+			
+			pachube.datastreams[7] = {};
+			pachube.datastreams[7].id = "longitude";      	
+			pachube.datastreams[7].current_value = String(lon);
+			
+      		
+      		
+      	
+      	
+      	}
+      	
+      	
+      	
        	      
       }
       
