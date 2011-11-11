@@ -51,10 +51,8 @@ app.get('/:username', function(request, response) {
       
       	pachube.title = "Twitter stats for " + name;
       	pachube.description = "Twitter stats for " + name + " (@" + screen_name + "): " + description;
-      	pachube.location = {};
-      	pachube.location.name = location;
-      	//pachube.location.domain = "virtual";
-      	pachube.version = "1.0.0";
+      	pachube.location = { name: location, domain: "physical"};
+       	pachube.version = "1.0.0";
       	pachube.datastreams = [];
       	pachube.tags = [];
       	pachube.tags[0] = "twitter";
