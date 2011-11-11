@@ -49,8 +49,6 @@ app.get('/:username', function(request, response) {
       
       if (active){
       
-      	
-      	
       	pachube.title = "Twitter stats for " + name;
       	pachube.description = "Twitter stats for " + name + " (@" + screen_name + "): " + description;
       	pachube.location = {};
@@ -118,9 +116,9 @@ app.listen(port, function() {
 
 
 
-function getPage (someUri, callback) {
+function getPage (url, callback) {
   request({uri: someUri}, function (error, response, body) {
-      console.log("Fetched " +someUri+ " OK!");
+      console.log("Fetched " +url+ " successfully.");
       callback(body);
     });
 }
