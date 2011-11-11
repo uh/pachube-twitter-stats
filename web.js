@@ -61,30 +61,36 @@ app.get('/:username', function(request, response) {
       	pachube.datastreams[0] = {};
       	pachube.datastreams[0].id = "followers";      	
       	pachube.datastreams[0].current_value = String(followers_count);
+      	pachube.datastreams[0].min_value = "0";
       	pachube.datastreams[0].unit = {};
       	pachube.datastreams[0].unit.label = "followers";
+      	
       	
       	pachube.datastreams[1] = {};
       	pachube.datastreams[1].id = "friends";      	
       	pachube.datastreams[1].current_value = String(friends_count);
+      	pachube.datastreams[1].min_value = "0";
       	pachube.datastreams[1].unit = {};
       	pachube.datastreams[1].unit.label = "friends";
       	
       	pachube.datastreams[2] = {};
       	pachube.datastreams[2].id = "lists";      	
       	pachube.datastreams[2].current_value = String(listed_count);
+      	pachube.datastreams[2].min_value = "0";
       	pachube.datastreams[2].unit = {};
       	pachube.datastreams[2].unit.label = "lists";
       	
       	pachube.datastreams[3] = {};
       	pachube.datastreams[3].id = "tweets";      	
       	pachube.datastreams[3].current_value = String(statuses_count);
+      	pachube.datastreams[3].min_value = "0";
       	pachube.datastreams[3].unit = {};
       	pachube.datastreams[3].unit.label = "tweets";
       	
       	pachube.datastreams[4] = {};
       	pachube.datastreams[4].id = "favourites";      	
       	pachube.datastreams[4].current_value = String(favourites_count);
+      	pachube.datastreams[4].min_value = "0";
       	pachube.datastreams[4].unit = {};
       	pachube.datastreams[4].unit.label = "favourites";
       	      
