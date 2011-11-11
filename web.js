@@ -129,8 +129,8 @@ app.get('/:username', function(request, response) {
       	
       	if (geolocated){
       	
-      		pachube.location.lat = lat;
-      		pachube.location.lon = lon;
+      		pachube.location.lat = String(lat);
+      		pachube.location.lon = String(lon);
       		
 			pachube.datastreams[6] = {};
 			pachube.datastreams[6].id = "latitude";      	
