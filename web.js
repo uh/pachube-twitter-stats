@@ -57,6 +57,9 @@ app.get('/:username', function(request, response) {
       	pachube.location.name = location;
       	pachube.version = "1.0.0";
       	pachube.datastreams = [];
+      	pachube.tags = [];
+      	pachube.tags[0] = "twitter";
+      	pachube.tags[1] = "twitter_stats";
       	
       	pachube.datastreams[0] = {};
       	pachube.datastreams[0].id = "followers";      	
