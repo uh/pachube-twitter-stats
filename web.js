@@ -80,7 +80,10 @@ app.get('/:username', function(request, response) {
       	
       	console.log("0" + JSON.stringify(pachube));
       	pachube.title = "Twitter stats for " + name;
-      	pachube.description = "Twitter stats for " + name + " (@" + screen_name + "): " + description;
+      	pachube.description = "Twitter stats for " + name + " (@" + screen_name + ")"
+      	if(description){
+      	  pachube.description += description;
+      	}
       	console.log("1" + JSON.stringify(pachube));
       	pachube.location = { name: location, domain: "virtual"};
        	console.log("2" + JSON.stringify(pachube));
