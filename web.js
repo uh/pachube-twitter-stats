@@ -5,7 +5,9 @@ var request = require('request');
 
 var app = express.createServer(express.logger());
 
-app.get('/:username', function(request, response) {
+app.get('/:username',
+  // Success handling function
+  function(request, response) {
 
 	  
       var username =  request.params.username;
@@ -168,6 +170,11 @@ app.get('/:username', function(request, response) {
       
       
       
+    },
+    // Error handling function
+    function(statusCode, body){
+      response.writeHead(statusCode, {"Content-Type": "application/json"});
+      response.write(body);
     });
 
 
@@ -181,10 +188,13 @@ app.listen(port, function() {
 
 
 
-function getPage (someurl, callback) {
+function getPage (someurl, callback, errback) {
   request({uri: someurl}, function (error, response, body) {
-      console.log("Fetched " +someurl+ " successfully.");
+    if(response.statusCode == 200){
       callback(body);
-    });
+    }else{
+      errback(response.statusCode, body);
+    }
+  });
 }
 
