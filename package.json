@@ -3,6 +3,7 @@
   "version": "0.0.1",
   "dependencies": {
     "express": "2.2.0",
-    "request": "2.2.0"
+    "request": "2.9.153",
+    "redis": "0.7.1"
   }
 }
