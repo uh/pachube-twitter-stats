@@ -12,6 +12,13 @@ if(process.env.REDISTOGO_URL){
   var redis = require("redis").createClient();
 }
 
+var oauth = {
+  consumer_key: process.env.CONSUMER_KEY,
+  consumer_secret: process.env.CONSUMER_SECRET,
+  token: process.env.TOKEN,
+  token_secret: process.env.TOKEN_SECRET
+}
+
 var app = express.createServer(express.logger());
 
 app.get('/:username',
@@ -131,7 +138,7 @@ app.listen(port, function() {
 });
 
 function getPage (someurl, callback, errback) {
-  request({uri: someurl}, function (error, response, body) {
+  request({uri: someurl, oauth: oauth}, function (error, response, body) {
     if(response.statusCode == 200){
       callback(body);
     }else{
