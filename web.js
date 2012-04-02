@@ -98,8 +98,8 @@ app.get('/:username',
             if (geolocated){
               pachube.location.lat = String(lat);
               pachube.location.lon = String(lon);            
-              pachube.datastreams[i+1] = {id: "latitude", current_value: String(lat)};
-              pachube.datastreams[i+2] = {id: "longitude", current_value: String(lon)};
+              pachube.datastreams.push({id: "latitude", current_value: String(lat)});
+              pachube.datastreams.push({id: "longitude", current_value: String(lon)});
             }
             redis.hset(username, 'last_fetched', now_time);
             redis.hset(username, 'content', JSON.stringify(pachube));
