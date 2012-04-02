@@ -12,11 +12,15 @@ if(process.env.REDISTOGO_URL){
   var redis = require("redis").createClient();
 }
 
-var oauth = {
-  consumer_key: process.env.CONSUMER_KEY,
-  consumer_secret: process.env.CONSUMER_SECRET,
-  token: process.env.TOKEN,
-  token_secret: process.env.TOKEN_SECRET
+var oauth = []
+var oauth_count = process.env.CONSUMER_KEY.split(',').length;
+for(var i = 0; i< oauth_count; i++){
+  oauth.push({
+    consumer_key: process.env.CONSUMER_KEY.split(',')[i],
+    consumer_secret: process.env.CONSUMER_SECRET.split(',')[i],
+    token: process.env.TOKEN.split(',')[i],
+    token_secret: process.env.TOKEN_SECRET.split(',')[i]
+  });
 }
 
 var app = express.createServer(express.logger());
@@ -138,7 +142,7 @@ app.listen(port, function() {
 });
 
 function getPage (someurl, callback, errback) {
-  request({uri: someurl, oauth: oauth}, function (error, response, body) {
+  request({uri: someurl, oauth: oauth[Math.floor(Math.random()*oauth_count)]}, function (error, response, body) {
     if(response.statusCode == 200){
       callback(body);
     }else{
