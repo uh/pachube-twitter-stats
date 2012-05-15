@@ -30,17 +30,28 @@ request({uri: 'http://jsonip.com/'}, function (error, response, body) { console.
 var app = express.createServer(express.logger());
 
 app.get('/rate_limit_info', function(request, response){
-  var json = {
-    version: "1.0.0",
-    title: "Twitter Stats Rate Limit Info",
-    private: true,
-    datastreams: []
+  if(!process.env.STATS_SECRET || (process.env.STATS_SECRET && process.env.STATS_SECRET == request.query.stats_secret)){
+    var json = {
+      version: "1.0.0",
+      title: "Twitter Stats Rate Limit Info",
+      private: true,
+      datastreams: []
+    }
+    var total_remaining = 0;
+    for(var i = 0; i< oauth.length; i++){
+      if(oauth[i].ratelimit_remaining){
+        json.datastreams.push({id: "ratelimit-remaining-" + i, current_value: oauth[i].ratelimit_remaining});
+        total_remaining += parseInt(oauth[i].ratelimit_remaining);
+      }
+    }
+    if(json.datastreams.length > 0){
+      json.datastreams.push({id: "total-remaining", current_value: total_remaining + ''});
+    }
+    response.writeHead(200, {"Content-Type": "application/json"});
+    response.write(JSON.stringify(json));
+  }else{
+    response.writeHead(404);
   }
-  for(var i = 0; i< oauth.length; i++){
-    if(oauth[i].ratelimit_remaining) json.datastreams.push({id: "ratelimit-remaining-" + i, current_value: oauth[i].ratelimit_remaining})
-  }
-  response.writeHead(200, {"Content-Type": "application/json"});
-  response.write(JSON.stringify(json));
   response.end('');
 });
 
