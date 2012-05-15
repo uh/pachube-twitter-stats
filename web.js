@@ -29,6 +29,21 @@ request({uri: 'http://jsonip.com/'}, function (error, response, body) { console.
 
 var app = express.createServer(express.logger());
 
+app.get('/rate_limit_info', function(request, response){
+  var json = {
+    version: "1.0.0",
+    title: "Twitter Stats Rate Limit Info",
+    private: true,
+    datastreams: []
+  }
+  for(var i = 0; i< oauth.length; i++){
+    if(oauth[i].ratelimit_remaining) json.datastreams.push({id: "ratelimit-remaining-" + i, current_value: oauth[i].ratelimit_remaining})
+  }
+  response.writeHead(200, {"Content-Type": "application/json"});
+  response.write(JSON.stringify(json));
+  response.end('');
+});
+
 app.get('/:username',
   // Success handling function
   function(request, response) {
